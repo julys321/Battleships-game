@@ -1,5 +1,5 @@
 #pragma once
-enum Cell {
+enum class Cell {
 	WATER,
 	SUNKEN_SHIP,
 	INTACT_SHIP,
