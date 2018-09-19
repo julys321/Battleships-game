@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CppFileReferences.h"
+#include "Dependencies.h"
 TEST(Ocean, should_getWaterCell_when_usingGetCell) {
 	Ocean ocean;
 	EXPECT_EQ(ocean.getCellAtCoordinates(1, 1), Cell::WATER);

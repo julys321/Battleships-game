@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
-#include "Cell.h"
-#include "Direction.h"
+#include "Dependencies.h"
 class Ocean
 {
 private:
