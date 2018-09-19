@@ -11,6 +11,7 @@ public:
 	void deployShip(int lenght,int x,int y,Direction direction);
 	void deployShip(int x,int y);
 	bool equals(Ocean ocean);
+	void validateCellCoordinates(int x, int y);
 	Ocean();
 	~Ocean();
 };
