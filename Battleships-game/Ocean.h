@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Cell.h"
+#include "Direction.h"
 class Ocean
 {
 private:
@@ -8,6 +9,9 @@ private:
 public:
 	Cell getCellAtCoordinates(int x, int y);
 	void setCellAtCoordinates(int x, int y, Cell cell);
+	void deployShip(int lenght,int x,int y,Direction direction);
+	void deployShip(int x,int y);
+	bool equals(Ocean ocean);
 	Ocean();
 	~Ocean();
 };
