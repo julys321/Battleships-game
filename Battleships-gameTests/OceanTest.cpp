@@ -109,3 +109,8 @@ TEST(Ocean, shouldnt_beEqual_when_usingEquals) {
 
 	EXPECT_FALSE(ocean.equals(oceanMock));
 }
+TEST(Ocean, should_getExeption_when_usingDeployShip) {
+	Ocean ocean;
+	ocean.deployShip(3, 0, 0, Direction::EAST);
+	EXPECT_ANY_THROW(ocean.deployShip(3, 0, 1, Direction::EAST));
+}

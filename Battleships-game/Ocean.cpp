@@ -15,7 +15,6 @@ void Ocean::setCellAtCoordinates(int x, int y, Cell cell) {
 }
 
 void Ocean::deployShip(int lenght, int x, int y, Direction direction) {
-	Ocean ocean;
 	switch (direction) {
 	case Direction::NORTH:
 		for (int i = y; i > y - lenght; i--) {
