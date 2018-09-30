@@ -4,6 +4,15 @@ Cell Ocean::getCellAtCoordinates(int x, int y) {
 	return cells[x][y];
 }
 
+bool Ocean::isCellOutOfBounds(int x, int y) {
+	if (x > 9 ||
+		x < 0 ||
+		y > 9 ||
+		y < 0)
+		return false;
+	return true;
+}
+
 void Ocean::setCellAtCoordinates(int x, int y, Cell cell) {
 	cells[x][y] = cell;
 }

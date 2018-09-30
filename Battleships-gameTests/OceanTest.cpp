@@ -99,3 +99,15 @@ TEST(Ocean, should_getExeption_when_usingDeployShip) {
 	ocean.deployShip(3, 0, 0, Direction::EAST);
 	EXPECT_ANY_THROW(ocean.deployShip(3, 0, 1, Direction::EAST));
 }
+TEST(Ocean, should_getTrue_when_usingisCellOutOfBounds_at_x0_y1) {
+	Ocean ocean;
+	EXPECT_TRUE(ocean.isCellOutOfBounds(0, 1));
+}
+TEST(Ocean, should_getFalse_when_usingisCellOutOfBounds_at_xMinus1_yMinus1) {
+	Ocean ocean;
+	EXPECT_FALSE(ocean.isCellOutOfBounds(-1, -1));
+}
+TEST(Ocean, should_getFalse_when_usingisCellOutOfBounds_at_x10_y10) {
+	Ocean ocean;
+	EXPECT_FALSE(ocean.isCellOutOfBounds(10, 10));
+}
