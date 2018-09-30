@@ -42,6 +42,50 @@ TEST(Ocean_equals, shouldnt_beEqual_when_usingEquals) {
 
 	EXPECT_FALSE(ocean.equals(oceanMock));
 }
+TEST(Ocean_isCellOutOfBounds, should_getFalse_when_usingisCellOutOfBounds_at_x0_y1) {
+	Ocean ocean;
+	EXPECT_FALSE(ocean.isCellOutOfBounds(0, 1));
+}
+TEST(Ocean_isCellOutOfBounds, should_getTrue_when_usingisCellOutOfBounds_at_xMinus1_yMinus1) {
+	Ocean ocean;
+	EXPECT_TRUE(ocean.isCellOutOfBounds(-1, -1));
+}
+TEST(Ocean_isCellOutOfBounds, should_getTrue_when_usingisCellOutOfBounds_at_x10_y10) {
+	Ocean ocean;
+	EXPECT_TRUE(ocean.isCellOutOfBounds(10, 10));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_validatingAShipOutOfBoundsNorth) {
+	Ocean ocean;
+	EXPECT_FALSE(ocean.isShipAllowedToDeploy(3, 0, 1, Direction::NORTH));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getTrue_when_validatingAShipFacingNorth) {
+	Ocean ocean;
+	EXPECT_TRUE(ocean.isShipAllowedToDeploy(3, 0, 2, Direction::NORTH));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_validatingAShipOutOfBoundsEast) {
+	Ocean ocean;
+	EXPECT_FALSE(ocean.isShipAllowedToDeploy(3, 9, 0, Direction::EAST));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getTrue_when_validatingAShipFacingEast) {
+	Ocean ocean;
+	EXPECT_TRUE(ocean.isShipAllowedToDeploy(3, 7, 0, Direction::EAST));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_validatingAShipOutOfBoundsSouth) {
+	Ocean ocean;
+	EXPECT_FALSE(ocean.isShipAllowedToDeploy(3, 9, 9, Direction::SOUTH));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getTrue_when_validatingAShipFacingSouth) {
+	Ocean ocean;
+	EXPECT_TRUE(ocean.isShipAllowedToDeploy(3, 9, 6, Direction::SOUTH));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_validatingAShipOutOfBoundsWest) {
+	Ocean ocean;
+	EXPECT_FALSE(ocean.isShipAllowedToDeploy(3, 0, 9, Direction::WEST));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getTrue_when_validatingAShipFacingWest) {
+	Ocean ocean;
+	EXPECT_TRUE(ocean.isShipAllowedToDeploy(3, 2, 9, Direction::WEST));
+}
 TEST(Ocean_deployShip, should_deployTwoLongShipFacingEast_when_usingDeployShip) {
 	Ocean ocean;
 	ocean.deployShip(2, 1, 0, Direction::EAST);
@@ -125,48 +169,4 @@ TEST(Ocean_deployShip, should_deployThreeLongShipFacingWest_when_usingDeployShip
 	expectedOcean.setCellAtCoordinates(6, 9, Cell::INTACT_SHIP);
 
 	EXPECT_TRUE(ocean.equals(expectedOcean));
-}
-TEST(Ocean_isCellOutOfBounds, should_getFalse_when_usingisCellOutOfBounds_at_x0_y1) {
-	Ocean ocean;
-	EXPECT_FALSE(ocean.isCellOutOfBounds(0, 1));
-}
-TEST(Ocean_isCellOutOfBounds, should_getTrue_when_usingisCellOutOfBounds_at_xMinus1_yMinus1) {
-	Ocean ocean;
-	EXPECT_TRUE(ocean.isCellOutOfBounds(-1, -1));
-}
-TEST(Ocean_isCellOutOfBounds, should_getTrue_when_usingisCellOutOfBounds_at_x10_y10) {
-	Ocean ocean;
-	EXPECT_TRUE(ocean.isCellOutOfBounds(10, 10));
-}
-TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_validatingAShipOutOfBoundsNorth) {
-	Ocean ocean;
-	EXPECT_FALSE(ocean.isShipAllowedToDeploy(3, 0, 1, Direction::NORTH));
-}
-TEST(Ocean_isShipAllowedToDeploy, should_getTrue_when_validatingAShipFacingNorth) {
-	Ocean ocean;
-	EXPECT_TRUE(ocean.isShipAllowedToDeploy(3, 0, 2, Direction::NORTH));
-}
-TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_validatingAShipOutOfBoundsEast) {
-	Ocean ocean;
-	EXPECT_FALSE(ocean.isShipAllowedToDeploy(3, 9, 0, Direction::EAST));
-}
-TEST(Ocean_isShipAllowedToDeploy, should_getTrue_when_validatingAShipFacingEast) {
-	Ocean ocean;
-	EXPECT_TRUE(ocean.isShipAllowedToDeploy(3, 7, 0, Direction::EAST));
-}
-TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_validatingAShipOutOfBoundsSouth) {
-	Ocean ocean;
-	EXPECT_FALSE(ocean.isShipAllowedToDeploy(3, 9, 9, Direction::SOUTH));
-}
-TEST(Ocean_isShipAllowedToDeploy, should_getTrue_when_validatingAShipFacingSouth) {
-	Ocean ocean;
-	EXPECT_TRUE(ocean.isShipAllowedToDeploy(3, 9, 6, Direction::SOUTH));
-}
-TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_validatingAShipOutOfBoundsWest) {
-	Ocean ocean;
-	EXPECT_FALSE(ocean.isShipAllowedToDeploy(3, 0, 9, Direction::WEST));
-}
-TEST(Ocean_isShipAllowedToDeploy, should_getTrue_when_validatingAShipFacingWest) {
-	Ocean ocean;
-	EXPECT_TRUE(ocean.isShipAllowedToDeploy(3, 2, 9, Direction::WEST));
 }
