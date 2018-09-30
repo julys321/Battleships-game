@@ -5,12 +5,6 @@ Cell Ocean::getCellAtCoordinates(int x, int y) {
 }
 
 void Ocean::setCellAtCoordinates(int x, int y, Cell cell) {
-	try{
-		validateCellCoordinates(x, y);
-	}
-	catch (std::string exception) {
-		throw exception;
-	}
 	cells[x][y] = cell;
 }
 
@@ -54,16 +48,6 @@ bool Ocean::equals(Ocean ocean) {
 		}
 	}
 	return true;
-}
-
-void Ocean::validateCellCoordinates(int x, int y) {
-	if (
-		x > 9
-		|| x < 0
-		|| y > 9
-		|| y < 0
-		)
-		throw "Cell cannot be placed outside ocean boundaries";
 }
 
 Ocean::Ocean() {

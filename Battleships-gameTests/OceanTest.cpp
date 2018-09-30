@@ -1,20 +1,5 @@
 #include "pch.h"
 #include "Dependencies.h"
-TEST(Ocean, should_notThrowAnExeption_when_usingValidateCellCoordinates) {
-	Ocean ocean;
-	EXPECT_NO_THROW(ocean.validateCellCoordinates(1, 1));
-}
-TEST(Ocean, should_getExeption_when_usingValidateCellCoordinates) {
-	Ocean ocean;
-	EXPECT_ANY_THROW(ocean.validateCellCoordinates(0, -1));
-	EXPECT_ANY_THROW(ocean.validateCellCoordinates(-1, 0));
-	EXPECT_ANY_THROW(ocean.validateCellCoordinates(0,10));
-	EXPECT_ANY_THROW(ocean.validateCellCoordinates(10,0));
-}
-TEST(Ocean, should_getExeption_when_usingSetCell) {
-	Ocean ocean;
-	EXPECT_ANY_THROW(ocean.setCellAtCoordinates(1, -1, Cell::INTACT_SHIP));
-}
 TEST(Ocean, should_getWaterCell_when_usingGetCell) {
 	Ocean ocean;
 	EXPECT_EQ(ocean.getCellAtCoordinates(1, 1), Cell::WATER);
