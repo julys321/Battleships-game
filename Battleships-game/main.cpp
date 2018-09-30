@@ -1,6 +1,5 @@
 #include <iostream>
-#include "Player.h"
-#include "Ocean.h"
+#include "GameController.h"
 void drawPlayerOcean(Ocean ocean) {
 	std::cout << "  0 1 2 3 4 5 6 7 8 9 \n";
 		for (int y = 0; y < 10; y++) {

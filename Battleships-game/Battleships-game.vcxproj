@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ocean.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -125,6 +126,7 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Direction.h" />
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="Ocean.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
