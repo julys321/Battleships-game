@@ -8,7 +8,7 @@ private:
 public:
 	Cell getCellAtCoordinates(int x, int y);
 	bool isCellOutOfBounds(int x, int y);
-	bool isThereAShipAroundCoordinates(int x, int y);
+	bool isThereAShipAtAndAroundCoordinates(int x, int y);
 	void setCellAtCoordinates(int x, int y, Cell cell);
 	bool isShipAllowedToDeploy(int lenght, int x, int y, Direction direction);
 	void deployShip(int lenght,int x,int y,Direction direction);

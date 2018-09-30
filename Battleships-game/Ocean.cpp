@@ -18,7 +18,7 @@ bool Ocean::isCellOutOfBounds(int x, int y) {
 	return false;
 }
 
-bool Ocean::isThereAShipAroundCoordinates(int x, int y) {
+bool Ocean::isThereAShipAtAndAroundCoordinates(int x, int y) {
 	if (getCellAtCoordinates(x - 1, y - 1) == Cell::INTACT_SHIP)
 		return true;
 	if (getCellAtCoordinates(x, y - 1) == Cell::INTACT_SHIP)
@@ -26,6 +26,8 @@ bool Ocean::isThereAShipAroundCoordinates(int x, int y) {
 	if (getCellAtCoordinates(x + 1, y - 1) == Cell::INTACT_SHIP)
 		return true;
 	if (getCellAtCoordinates(x - 1, y) == Cell::INTACT_SHIP)
+		return true;
+	if (getCellAtCoordinates(x, y) == Cell::INTACT_SHIP)
 		return true;
 	if (getCellAtCoordinates(x + 1, y) == Cell::INTACT_SHIP)
 		return true;
@@ -42,26 +44,26 @@ void Ocean::setCellAtCoordinates(int x, int y, Cell cell) {
 	cells[x][y] = cell;
 }
 
-bool Ocean::isShipAllowedToDeploy(int lenght, int x, int y, Direction direction) {//TODO: check if there arent ships nearby
+bool Ocean::isShipAllowedToDeploy(int lenght, int x, int y, Direction direction) {
 	switch (direction) {
 	case Direction::NORTH:
 		for (int i = y; i > y - lenght; i--)
-			if (isCellOutOfBounds(x, i))
+			if (isCellOutOfBounds(x, i) || isThereAShipAtAndAroundCoordinates(x, i))
 				return false;
 		return true;
 	case Direction::EAST:
 		for (int j = x; j < x + lenght; j++)
-			if (isCellOutOfBounds(j, y))
+			if (isCellOutOfBounds(j, y) || isThereAShipAtAndAroundCoordinates(j, y))
 				return false;
 		return true;
 	case Direction::SOUTH:
 		for (int i = y; i < y + lenght; i++)
-			if (isCellOutOfBounds(x, i))
+			if (isCellOutOfBounds(x, i) || isThereAShipAtAndAroundCoordinates(x, i))
 				return false;
 		return true;
 	case Direction::WEST:
 		for (int j = x; j > x - lenght; j--)
-			if (isCellOutOfBounds(j, y))
+			if (isCellOutOfBounds(j, y) || isThereAShipAtAndAroundCoordinates(j, y))
 				return false;
 		return true;
 	}

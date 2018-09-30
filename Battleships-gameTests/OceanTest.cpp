@@ -93,46 +93,75 @@ TEST(Ocean_isShipAllowedToDeploy, should_getTrue_when_validatingAShipFacingWest)
 TEST(Ocean_isThereAShipAroundCoordinates, should_getTrue_when_ShipExistsTooCloseNorthWest) {
 	Ocean ocean;
 	ocean.setCellAtCoordinates(0, 0, Cell::INTACT_SHIP);
-	EXPECT_TRUE(ocean.isThereAShipAroundCoordinates(1, 1));
+	EXPECT_TRUE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
 }
 TEST(Ocean_isThereAShipAroundCoordinates, should_getTrue_when_ShipExistsTooCloseNorth) {
 	Ocean ocean;
 	ocean.setCellAtCoordinates(1, 0, Cell::INTACT_SHIP);
-	EXPECT_TRUE(ocean.isThereAShipAroundCoordinates(1, 1));
+	EXPECT_TRUE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
 }
 TEST(Ocean_isThereAShipAroundCoordinates, should_getTrue_when_ShipExistsTooCloseNorthEast) {
 	Ocean ocean;
 	ocean.setCellAtCoordinates(2, 0, Cell::INTACT_SHIP);
-	EXPECT_TRUE(ocean.isThereAShipAroundCoordinates(1, 1));
+	EXPECT_TRUE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
 }
 TEST(Ocean_isThereAShipAroundCoordinates, should_getTrue_when_ShipExistsTooCloseWest) {
 	Ocean ocean;
 	ocean.setCellAtCoordinates(0, 1, Cell::INTACT_SHIP);
-	EXPECT_TRUE(ocean.isThereAShipAroundCoordinates(1, 1));
+	EXPECT_TRUE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
+}
+TEST(Ocean_isThereAShipAroundCoordinates, should_getTrue_when_ShipExistsAtTheCoordinates) {
+	Ocean ocean;
+	ocean.setCellAtCoordinates(1, 1, Cell::INTACT_SHIP);
+	EXPECT_TRUE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
 }
 TEST(Ocean_isThereAShipAroundCoordinates, should_getTrue_when_ShipExistsTooCloseEast) {
 	Ocean ocean;
 	ocean.setCellAtCoordinates(2, 1, Cell::INTACT_SHIP);
-	EXPECT_TRUE(ocean.isThereAShipAroundCoordinates(1, 1));
+	EXPECT_TRUE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
 }
 TEST(Ocean_isThereAShipAroundCoordinates, should_getTrue_when_ShipExistsTooCloseSouthWest) {
 	Ocean ocean;
 	ocean.setCellAtCoordinates(0, 2, Cell::INTACT_SHIP);
-	EXPECT_TRUE(ocean.isThereAShipAroundCoordinates(1, 1));
+	EXPECT_TRUE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
 }
 TEST(Ocean_isThereAShipAroundCoordinates, should_getTrue_when_ShipExistsTooCloseSouth) {
 	Ocean ocean;
 	ocean.setCellAtCoordinates(1, 2, Cell::INTACT_SHIP);
-	EXPECT_TRUE(ocean.isThereAShipAroundCoordinates(1, 1));
+	EXPECT_TRUE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
 }
 TEST(Ocean_isThereAShipAroundCoordinates, should_getTrue_when_ShipExistsTooCloseSouthEast) {
 	Ocean ocean;
 	ocean.setCellAtCoordinates(2, 2, Cell::INTACT_SHIP);
-	EXPECT_TRUE(ocean.isThereAShipAroundCoordinates(1, 1));
+	EXPECT_TRUE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
 }
 TEST(Ocean_isThereAShipAroundCoordinates, should_getFalse_when_noShipsExistAround) {
 	Ocean ocean;
-	EXPECT_FALSE(ocean.isThereAShipAroundCoordinates(1, 1));
+	EXPECT_FALSE(ocean.isThereAShipAtAndAroundCoordinates(1, 1));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_shipExistsToTheEast) {
+	Ocean ocean;
+	ocean.deployShip(2, 5, 4, Direction::NORTH);
+
+	EXPECT_FALSE(ocean.isShipAllowedToDeploy(2, 4, 4, Direction::NORTH));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_shipExistsToTheSouth) {
+	Ocean ocean;
+	ocean.deployShip(2, 4, 5, Direction::EAST);
+
+	EXPECT_FALSE(ocean.isShipAllowedToDeploy(2, 4, 4, Direction::NORTH));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_shipExistsToTheWest) {
+	Ocean ocean;
+	ocean.deployShip(2, 3, 4, Direction::SOUTH);
+
+	EXPECT_FALSE(ocean.isShipAllowedToDeploy(2, 4, 4, Direction::NORTH));
+}
+TEST(Ocean_isShipAllowedToDeploy, should_getFalse_when_shipExistsToTheNorth) {
+	Ocean ocean;
+	ocean.deployShip(2, 4, 3, Direction::WEST);
+
+	EXPECT_FALSE(ocean.isShipAllowedToDeploy(2, 4, 4, Direction::NORTH));
 }
 TEST(Ocean_deployShip, should_deployTwoLongShipFacingEast_when_usingDeployShip) {
 	Ocean ocean;
