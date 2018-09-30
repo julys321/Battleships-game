@@ -1,9 +1,33 @@
 #include "pch.h"
 #include "../Battleships-game/Player.cpp"
-TEST(Player_deployShip, should_deployOneLongShip_when_usingdeployShip) {
+TEST(Player_setShipLimit, should_setOneLongShipLimitTo6) {
 	Player player;
-	player.deployShip(0, 0);
-	EXPECT_EQ(player.ocean.getCellAtCoordinates(0, 0), Cell::INTACT_SHIP);
+	player.setShipLimit(1, 6);
+	EXPECT_EQ(player.getShipLimit(1), 6);
+}
+TEST(Player_constructor, should_getDefaultShipLimit_4_when_givenLenght_1) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(1), 4);
+}
+TEST(Player_constructor, should_getDefaultShipLimit_3_when_givenLenght_2) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(2), 3);
+}
+TEST(Player_constructor, should_getDefaultShipLimit_2_when_givenLenght_3) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(3), 2);
+}
+TEST(Player_constructor, should_getDefaultShipLimit_1_when_givenLenght_4) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(4), 1);
+}
+TEST(Player_constructor, should_getDefaultShipLimit_0_when_givenLenght_5) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(5), 0);
+}
+TEST(Player_constructor, should_getDefaultShipLimit_0_when_givenLenght_6) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(6), 0);
 }
 TEST(Player_equals, should_beEqual_when_usingEquals) {
 	Player player;
@@ -127,6 +151,11 @@ TEST(Player_isShipAllowedToDeploy, should_getFalse_when_shipExistsToTheNorth) {
 	player.deployShip(2, 4, 3, Direction::WEST);
 
 	EXPECT_FALSE(player.isShipAllowedToDeploy(2, 4, 4, Direction::NORTH));
+}
+TEST(Player_deployShip, should_deployOneLongShip_when_usingdeployShip) {
+	Player player;
+	player.deployShip(0, 0);
+	EXPECT_EQ(player.ocean.getCellAtCoordinates(0, 0), Cell::INTACT_SHIP);
 }
 TEST(Player_deployShip, should_deployTwoLongShipFacingEast_when_usingDeployShip) {
 	Player player;

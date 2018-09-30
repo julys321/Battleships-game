@@ -1,13 +1,12 @@
 #include "Player.h"
 
+int Player::getShipLimit(int lenght){
+	return shipLimits[lenght];
+}
 
-
-//Ocean Player::getOcean(){
-//	return ocean;
-//}
-
-
-//Ocean getOcean();
+void Player::setShipLimit(int lenght, int limit){
+	shipLimits[lenght] = limit;
+}
 
 bool Player::isThereAShipAtAndAroundCoordinates(int x, int y) {
 	if (ocean.getCellAtCoordinates(x - 1, y - 1) == Cell::INTACT_SHIP)
