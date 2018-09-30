@@ -13,6 +13,7 @@ public:
 	bool isShipAllowedToDeploy(int lenght, int x, int y, Direction direction);
 	void deployShip(int lenght, int x, int y, Direction direction);
 	void deployShip(int x, int y);
+	void receiveShot(int x, int y);
 	Player();
 	~Player();
 };

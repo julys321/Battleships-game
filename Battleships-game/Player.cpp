@@ -89,6 +89,13 @@ void Player::deployShip(int x, int y) {
 	deployShip(1, x, y, Direction::EAST);
 }
 
+void Player::receiveShot(int x, int y){
+	if (ocean.getCellAtCoordinates(x, y) == Cell::INTACT_SHIP)
+		ocean.setCellAtCoordinates(x, y, Cell::SUNKEN_SHIP);
+	if (ocean.getCellAtCoordinates(x, y) == Cell::WATER)
+		ocean.setCellAtCoordinates(x, y, Cell::MISSED_SHOT);
+}
+
 Player::Player()
 {
 }

@@ -277,3 +277,42 @@ TEST(Player_deployShip, should_deployThreeLongShipFacingWest_when_usingDeployShi
 
 	EXPECT_TRUE(player.ocean.equals(expectedPlayer.ocean));
 }
+TEST(Player_receiveShot, should_changeCellToMissed_Shot_when_targetingWaterCell) {
+	Player expectedPlayer;
+	expectedPlayer.ocean.setCellAtCoordinates(8, 9, Cell::MISSED_SHOT);
+
+	Player player;
+	player.receiveShot(8,9);
+
+	EXPECT_TRUE(player.ocean.equals(expectedPlayer.ocean));
+}
+TEST(Player_receiveShot, should_keepCellAsMissed_Shot_when_targetingMissed_ShotCell) {
+	Player expectedPlayer;
+	expectedPlayer.ocean.setCellAtCoordinates(8, 9, Cell::MISSED_SHOT);
+
+	Player player;
+	player.ocean.setCellAtCoordinates(8, 9, Cell::MISSED_SHOT);
+	player.receiveShot(8, 9);
+
+	EXPECT_TRUE(player.ocean.equals(expectedPlayer.ocean));
+}
+TEST(Player_receiveShot, should_keepCellToSunken_Ship_when_targetingSunken_ShipCell) {
+	Player expectedPlayer;
+	expectedPlayer.ocean.setCellAtCoordinates(8, 9, Cell::SUNKEN_SHIP);
+
+	Player player;
+	player.ocean.setCellAtCoordinates(8, 9, Cell::SUNKEN_SHIP);
+	player.receiveShot(8, 9);
+
+	EXPECT_TRUE(player.ocean.equals(expectedPlayer.ocean));
+}
+TEST(Player_receiveShot, should_changeCellToSunken_Ship_when_targetingIntact_ShipCell) {
+	Player expectedPlayer;
+	expectedPlayer.ocean.setCellAtCoordinates(8, 9, Cell::SUNKEN_SHIP);
+
+	Player player;
+	player.ocean.setCellAtCoordinates(8, 9, Cell::INTACT_SHIP);
+	player.receiveShot(8, 9);
+
+	EXPECT_TRUE(player.ocean.equals(expectedPlayer.ocean));
+}
