@@ -1,6 +1,11 @@
 #include "Ocean.h"
 
 Cell Ocean::getCellAtCoordinates(int x, int y) {
+	if (x > 9 ||
+		x < 0 ||
+		y > 9 ||
+		y < 0)
+		return Cell::WATER;
 	return cells[x][y];
 }
 

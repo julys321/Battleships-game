@@ -4,6 +4,10 @@ TEST(Ocean_getCell, should_getWaterCell_when_usingGetCell) {
 	Ocean ocean;
 	EXPECT_EQ(ocean.getCellAtCoordinates(1, 1), Cell::WATER);
 }
+TEST(Ocean_getCell, should_getWaterCell_when_usingGetingOutOfBounds) {
+	Ocean ocean;
+	EXPECT_EQ(ocean.getCellAtCoordinates(-1, -1), Cell::WATER);
+}
 TEST(Ocean_getCell, should_getIntactShipCell_when_usingGetCell) {
 	Ocean ocean;
 	ocean.setCellAtCoordinates(1, 1, Cell::INTACT_SHIP);
