@@ -26,7 +26,7 @@ bool Ocean::isShipAllowedToDeploy(int lenght, int x, int y, Direction direction)
 		return true;
 	case Direction::EAST:
 		for (int j = x; j < x + lenght; j++)
-			if (isCellOutOfBounds(j, y))
+			if (isCellOutOfBounds(j, x))
 				return false;
 		return true;
 	case Direction::SOUTH:

@@ -24,58 +24,6 @@ TEST(Ocean, should_deployOneLongShip_when_usingdeployShip) {
 	ocean.deployShip(0, 0);
 	EXPECT_EQ(ocean.getCellAtCoordinates(0, 0), Cell::INTACT_SHIP);
 }
-TEST(Ocean, should_deployTwoLongShipFacingEast_when_usingDeployShip) {
-	Ocean ocean;
-	ocean.deployShip(2, 0, 0, Direction::EAST);
-	EXPECT_EQ(ocean.getCellAtCoordinates(0, 0), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(1, 0), Cell::INTACT_SHIP);
-}
-TEST(Ocean, should_deployTwoLongShipFacingSouth_when_usingDeployShip) {
-	Ocean ocean;
-	ocean.deployShip(2, 0, 0, Direction::SOUTH);
-	EXPECT_EQ(ocean.getCellAtCoordinates(0, 0), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(0, 1), Cell::INTACT_SHIP);
-}
-TEST(Ocean, should_deployTwoLongShipFacingNorth_when_usingDeployShip) {
-	Ocean ocean;
-	ocean.deployShip(2, 9, 9, Direction::NORTH);
-	EXPECT_EQ(ocean.getCellAtCoordinates(9, 9), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(9, 8), Cell::INTACT_SHIP);
-}
-TEST(Ocean, should_deployTwoLongShipFacingWest_when_usingDeployShip) {
-	Ocean ocean;
-	ocean.deployShip(2, 9, 9, Direction::WEST);
-	EXPECT_EQ(ocean.getCellAtCoordinates(9, 9), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(8, 9), Cell::INTACT_SHIP);
-}
-TEST(Ocean, should_deployThreeLongShipFacingEast_when_usingDeployShip) {
-	Ocean ocean;
-	ocean.deployShip(3, 0, 0, Direction::EAST);
-	EXPECT_EQ(ocean.getCellAtCoordinates(0, 0), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(1, 0), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(2, 0), Cell::INTACT_SHIP);
-}
-TEST(Ocean, should_deployThreeLongShipFacingSouth_when_usingDeployShip) {
-	Ocean ocean;
-	ocean.deployShip(3, 0, 0, Direction::SOUTH);
-	EXPECT_EQ(ocean.getCellAtCoordinates(0, 0), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(0, 1), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(0, 2), Cell::INTACT_SHIP);
-}
-TEST(Ocean, should_deployThreeLongShipFacingNorth_when_usingDeployShip) {
-	Ocean ocean;
-	ocean.deployShip(3, 9, 9, Direction::NORTH);
-	EXPECT_EQ(ocean.getCellAtCoordinates(9, 9), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(9, 8), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(9, 7), Cell::INTACT_SHIP);
-}
-TEST(Ocean, should_deployThreeLongShipFacingWest_when_usingDeployShip) {
-	Ocean ocean;
-	ocean.deployShip(3, 9, 9, Direction::WEST);
-	EXPECT_EQ(ocean.getCellAtCoordinates(9, 9), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(8, 9), Cell::INTACT_SHIP);
-	EXPECT_EQ(ocean.getCellAtCoordinates(7, 9), Cell::INTACT_SHIP);
-}
 TEST(Ocean, should_beEqual_when_usingEquals) {
 	Ocean ocean;
 	ocean.deployShip(3, 0, 0, Direction::EAST);
@@ -93,6 +41,90 @@ TEST(Ocean, shouldnt_beEqual_when_usingEquals) {
 	oceanMock.deployShip(4, 0, 0, Direction::SOUTH);
 
 	EXPECT_FALSE(ocean.equals(oceanMock));
+}
+TEST(Ocean, should_deployTwoLongShipFacingEast_when_usingDeployShip) {
+	Ocean ocean;
+	ocean.deployShip(2, 1, 0, Direction::EAST);
+
+	Ocean expectedOcean;
+	expectedOcean.setCellAtCoordinates(1, 0, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(2, 0, Cell::INTACT_SHIP);
+
+	EXPECT_TRUE(ocean.equals(expectedOcean));
+}
+TEST(Ocean, should_deployTwoLongShipFacingSouth_when_usingDeployShip) {
+	Ocean ocean;
+	ocean.deployShip(2, 1, 0, Direction::SOUTH);
+
+	Ocean expectedOcean;
+	expectedOcean.setCellAtCoordinates(1, 0, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(1, 1, Cell::INTACT_SHIP);
+
+	EXPECT_TRUE(ocean.equals(expectedOcean));
+}
+TEST(Ocean, should_deployTwoLongShipFacingNorth_when_usingDeployShip) {
+	Ocean ocean;
+	ocean.deployShip(2, 8, 9, Direction::NORTH);
+
+	Ocean expectedOcean;
+	expectedOcean.setCellAtCoordinates(8, 9, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(8, 8, Cell::INTACT_SHIP);
+
+	EXPECT_TRUE(ocean.equals(expectedOcean));
+}
+TEST(Ocean, should_deployTwoLongShipFacingWest_when_usingDeployShip) {
+	Ocean ocean;
+	ocean.deployShip(2, 8, 9, Direction::WEST);
+
+	Ocean expectedOcean;
+	expectedOcean.setCellAtCoordinates(8, 9, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(7, 9, Cell::INTACT_SHIP);
+
+	EXPECT_TRUE(ocean.equals(expectedOcean));
+}
+TEST(Ocean, should_deployThreeLongShipFacingEast_when_usingDeployShip) {
+	Ocean ocean;
+	ocean.deployShip(3, 1, 0, Direction::EAST);
+
+	Ocean expectedOcean;
+	expectedOcean.setCellAtCoordinates(1, 0, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(2, 0, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(3, 0, Cell::INTACT_SHIP);
+
+	EXPECT_TRUE(ocean.equals(expectedOcean));
+}
+TEST(Ocean, should_deployThreeLongShipFacingSouth_when_usingDeployShip) {
+	Ocean ocean;
+	ocean.deployShip(3, 1, 0, Direction::SOUTH);
+
+	Ocean expectedOcean;
+	expectedOcean.setCellAtCoordinates(1, 0, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(1, 1, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(1, 2, Cell::INTACT_SHIP);
+
+	EXPECT_TRUE(ocean.equals(expectedOcean));
+}
+TEST(Ocean, should_deployThreeLongShipFacingNorth_when_usingDeployShip) {
+	Ocean ocean;
+	ocean.deployShip(3, 8, 9, Direction::NORTH);
+
+	Ocean expectedOcean;
+	expectedOcean.setCellAtCoordinates(8, 9, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(8, 8, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(8, 7, Cell::INTACT_SHIP);
+
+	EXPECT_TRUE(ocean.equals(expectedOcean));
+}
+TEST(Ocean, should_deployThreeLongShipFacingWest_when_usingDeployShip) {
+	Ocean ocean;
+	ocean.deployShip(3, 8, 9, Direction::WEST);
+
+	Ocean expectedOcean;
+	expectedOcean.setCellAtCoordinates(8, 9, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(7, 9, Cell::INTACT_SHIP);
+	expectedOcean.setCellAtCoordinates(6, 9, Cell::INTACT_SHIP);
+
+	EXPECT_TRUE(ocean.equals(expectedOcean));
 }
 TEST(Ocean, should_getExeption_when_usingDeployShip) {
 	Ocean ocean;
