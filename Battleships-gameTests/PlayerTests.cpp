@@ -316,3 +316,12 @@ TEST(Player_receiveShot, should_changeCellToSunken_Ship_when_targetingIntact_Shi
 
 	EXPECT_TRUE(player.ocean.equals(expectedPlayer.ocean));
 }
+TEST(Player_isThereRemainingShips, should_getFalse_when_chekingEmptyPlayerOcean) {
+	Player player;
+	EXPECT_FALSE(player.isThereRemainingShips());
+}
+TEST(Player_isThereRemainingShips, should_getTrue_when_chekingPlayerOceanWithOneShip) {
+	Player player;
+	player.deployShip(8, 7);
+	EXPECT_TRUE(player.isThereRemainingShips());
+}

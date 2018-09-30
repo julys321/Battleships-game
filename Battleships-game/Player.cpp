@@ -1,10 +1,10 @@
 #include "Player.h"
 
-int Player::getShipLimit(int lenght){
+int Player::getShipLimit(int lenght) {
 	return shipLimits[lenght];
 }
 
-void Player::setShipLimit(int lenght, int limit){
+void Player::setShipLimit(int lenght, int limit) {
 	shipLimits[lenght] = limit;
 }
 
@@ -89,11 +89,19 @@ void Player::deployShip(int x, int y) {
 	deployShip(1, x, y, Direction::EAST);
 }
 
-void Player::receiveShot(int x, int y){
+void Player::receiveShot(int x, int y) {
 	if (ocean.getCellAtCoordinates(x, y) == Cell::INTACT_SHIP)
 		ocean.setCellAtCoordinates(x, y, Cell::SUNKEN_SHIP);
 	if (ocean.getCellAtCoordinates(x, y) == Cell::WATER)
 		ocean.setCellAtCoordinates(x, y, Cell::MISSED_SHOT);
+}
+
+bool Player::isThereRemainingShips() {
+	for (int x = 0; x < 10; x++)
+		for (int y = 0; y < 10; y++)
+			if (ocean.getCellAtCoordinates(x, y) == Cell::INTACT_SHIP)
+				return true;
+	return false;
 }
 
 Player::Player()
