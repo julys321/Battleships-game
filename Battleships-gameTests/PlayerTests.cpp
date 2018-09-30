@@ -29,6 +29,22 @@ TEST(Player_constructor, should_getDefaultShipLimit_0_when_givenLenght_6) {
 	Player player;
 	EXPECT_EQ(player.getShipLimit(6), 0);
 }
+TEST(Player_constructor, should_getDefaultShipLimit_0_when_givenLenght_7) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(7), 0);
+}
+TEST(Player_constructor, should_getDefaultShipLimit_0_when_givenLenght_8) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(8), 0);
+}
+TEST(Player_constructor, should_getDefaultShipLimit_0_when_givenLenght_9) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(9), 0);
+}
+TEST(Player_constructor, should_getDefaultShipLimit_0_when_givenLenght_10) {
+	Player player;
+	EXPECT_EQ(player.getShipLimit(10), 0);
+}
 TEST(Player_equals, should_beEqual_when_usingEquals) {
 	Player player;
 	player.deployShip(3, 0, 0, Direction::EAST);

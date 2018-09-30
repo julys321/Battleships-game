@@ -4,7 +4,7 @@
 class Player
 {
 private:
-	int shipLimits[7]{0,4,3,2,1,0};
+	int shipLimits[11]{0,4,3,2,1,0,0,0,0,0};
 public:
 	Ocean ocean;
 	int getShipLimit(int lenght);
