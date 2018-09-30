@@ -126,11 +126,6 @@ TEST(Ocean_deployShip, should_deployThreeLongShipFacingWest_when_usingDeployShip
 
 	EXPECT_TRUE(ocean.equals(expectedOcean));
 }
-TEST(Ocean_deployShip, should_getExeption_when_usingDeployShip) {
-	Ocean ocean;
-	ocean.deployShip(3, 0, 0, Direction::EAST);
-	EXPECT_ANY_THROW(ocean.deployShip(3, 0, 1, Direction::EAST));
-}
 TEST(Ocean_isCellOutOfBounds, should_getFalse_when_usingisCellOutOfBounds_at_x0_y1) {
 	Ocean ocean;
 	EXPECT_FALSE(ocean.isCellOutOfBounds(0, 1));
