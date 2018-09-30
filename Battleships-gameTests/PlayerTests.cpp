@@ -183,6 +183,16 @@ TEST(Player_deployShip, should_deployOneLongShip_when_usingdeployShip) {
 	player.deployShip(0, 0);
 	EXPECT_EQ(player.ocean.getCellAtCoordinates(0, 0), Cell::INTACT_SHIP);
 }
+TEST(Player_deployShip, should_lowerShipLimit_when_placingOneLongShip) {
+	Player player;
+	player.deployShip(0, 0);
+	EXPECT_EQ(player.getShipLimit(1), 3);
+}
+TEST(Player_deployShip, should_lowerShipLimit_when_placingTwoLongShip) {
+	Player player;
+	player.deployShip(2, 1, 0, Direction::EAST);
+	EXPECT_EQ(player.getShipLimit(2), 2);
+}
 TEST(Player_deployShip, should_deployTwoLongShipFacingEast_when_usingDeployShip) {
 	Player player;
 	player.deployShip(2, 1, 0, Direction::EAST);

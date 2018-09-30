@@ -60,6 +60,7 @@ bool Player::isShipAllowedToDeploy(int lenght, int x, int y, Direction direction
 }
 
 void Player::deployShip(int lenght, int x, int y, Direction direction) {
+	shipLimits[lenght]--;
 	switch (direction) {
 	case Direction::NORTH:
 		for (int i = y; i > y - lenght; i--) {
@@ -85,7 +86,7 @@ void Player::deployShip(int lenght, int x, int y, Direction direction) {
 }
 
 void Player::deployShip(int x, int y) {
-	ocean.setCellAtCoordinates(x, y, Cell::INTACT_SHIP);
+	deployShip(1, x, y, Direction::EAST);
 }
 
 Player::Player()
