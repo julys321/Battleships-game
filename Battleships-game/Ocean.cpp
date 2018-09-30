@@ -66,6 +66,8 @@ bool Ocean::isShipAllowedToDeploy(int lenght, int x, int y, Direction direction)
 			if (isCellOutOfBounds(j, y) || isThereAShipAtAndAroundCoordinates(j, y))
 				return false;
 		return true;
+	default:
+		return false;
 	}
 }
 void Ocean::deployShip(int lenght, int x, int y, Direction direction) {
@@ -109,9 +111,9 @@ bool Ocean::equals(Ocean ocean) {
 }
 
 Ocean::Ocean() {
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 10; j++) {
-			this->cells[i][j] = Cell::WATER;
+	for (int x = 0; x < 10; x++) {
+		for (int y = 0; y < 10; y++) {
+			this->cells[x][y] = Cell::WATER;
 		}
 	}
 }
