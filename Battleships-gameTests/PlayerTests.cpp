@@ -168,6 +168,16 @@ TEST(Player_isShipAllowedToDeploy, should_getFalse_when_shipExistsToTheNorth) {
 
 	EXPECT_FALSE(player.isShipAllowedToDeploy(2, 4, 4, Direction::NORTH));
 }
+TEST(Player_isShipAllowedToDeploy, should_getFalse_when_shipTenLongShipLimitExceeded) {
+	Player player;
+
+	EXPECT_FALSE(player.isShipAllowedToDeploy(10, 7, 9, Direction::NORTH));
+}
+TEST(Player_isShipAllowedToDeploy, should_getFalse_when_shipEightLongShipLimitExceeded) {
+	Player player;
+
+	EXPECT_FALSE(player.isShipAllowedToDeploy(8, 7, 9, Direction::NORTH));
+}
 TEST(Player_deployShip, should_deployOneLongShip_when_usingdeployShip) {
 	Player player;
 	player.deployShip(0, 0);

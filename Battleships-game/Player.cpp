@@ -31,6 +31,8 @@ bool Player::isThereAShipAtAndAroundCoordinates(int x, int y) {
 }
 
 bool Player::isShipAllowedToDeploy(int lenght, int x, int y, Direction direction) {
+	if (getShipLimit(lenght) <= 0)
+		return false;
 	switch (direction) {
 	case Direction::NORTH:
 		for (int i = y; i > y - lenght; i--)
