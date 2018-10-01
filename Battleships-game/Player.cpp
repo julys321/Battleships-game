@@ -96,12 +96,19 @@ void Player::receiveShot(int x, int y) {
 		ocean.setCellAtCoordinates(x, y, Cell::MISSED_SHOT);
 }
 
-bool Player::isThereRemainingShips() {
+bool Player::areThereRemainingShips() {
 	for (int x = 0; x < 10; x++)
 		for (int y = 0; y < 10; y++)
 			if (ocean.getCellAtCoordinates(x, y) == Cell::INTACT_SHIP)
 				return true;
 	return false;
+}
+
+bool Player::areAllShipLimitsExceeded(){
+	for (int i = 0; i < 11; i++)
+		if (shipLimits[i] != 0)
+			return false;
+	return true;
 }
 
 Player::Player()

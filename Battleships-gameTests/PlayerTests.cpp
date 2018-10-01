@@ -318,10 +318,20 @@ TEST(Player_receiveShot, should_changeCellToSunken_Ship_when_targetingIntact_Shi
 }
 TEST(Player_isThereRemainingShips, should_getFalse_when_chekingEmptyPlayerOcean) {
 	Player player;
-	EXPECT_FALSE(player.isThereRemainingShips());
+	EXPECT_FALSE(player.areThereRemainingShips());
 }
 TEST(Player_isThereRemainingShips, should_getTrue_when_chekingPlayerOceanWithOneShip) {
 	Player player;
 	player.deployShip(8, 7);
-	EXPECT_TRUE(player.isThereRemainingShips());
+	EXPECT_TRUE(player.areThereRemainingShips());
+}
+TEST(Player_areAllShipLimitsExceeded, should_getFalse_when_chekingPlayerWithShipLimits) {
+	Player player;
+	EXPECT_FALSE(player.areAllShipLimitsExceeded());
+}
+TEST(Player_areAllShipLimitsExceeded, should_getTrue_when_chekingPlayerWithShipLimits) {
+	Player player;
+	for (int i = 0; i < 11; i++)
+		player.setShipLimit(i, 0);
+	EXPECT_TRUE(player.areAllShipLimitsExceeded());
 }

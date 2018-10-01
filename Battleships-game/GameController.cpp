@@ -5,9 +5,9 @@
 void GameController::playTwoPlayers(){
 	Player playerOne;
 	Player playerTwo;
-	while (!playerOne.isThereRemainingShips && !playerTwo.isThereRemainingShips) {
-		doATurn(playerOne);
-		doATurn(playerTwo);
+	while (playerOne.areThereRemainingShips() && playerTwo.areThereRemainingShips()) {
+	//	doATurn(playerOne);
+	//	doATurn(playerTwo);
 	}
 }
 
