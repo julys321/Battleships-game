@@ -90,8 +90,10 @@ void Player::deployShip(int x, int y) {
 }
 
 void Player::receiveShot(int x, int y) {
-	if (ocean.getCellAtCoordinates(x, y) == Cell::INTACT_SHIP)
+	if (ocean.getCellAtCoordinates(x, y) == Cell::INTACT_SHIP) {
+		isSkippingATurn = 1;
 		ocean.setCellAtCoordinates(x, y, Cell::SUNKEN_SHIP);
+	}
 	if (ocean.getCellAtCoordinates(x, y) == Cell::WATER)
 		ocean.setCellAtCoordinates(x, y, Cell::MISSED_SHOT);
 }

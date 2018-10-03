@@ -3,7 +3,7 @@
 class GameController
 {
 public:
-	void playTwoPlayers(int shipLimits[]);
+	void playTwoPlayers();
 	void doATurn(Player &player,Player &enemy);
 	void setupPlayerBoard(Player &player);
 	void drawPlayerOcean(Ocean ocean);

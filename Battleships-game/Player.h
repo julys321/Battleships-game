@@ -3,9 +3,9 @@
 #include "Direction.h"
 class Player
 {
-private:
-	int shipLimits[11]{0,4,3,2,1,0,0,0,0,0};
 public:
+	int shipLimits[11]{ 0,4,3,2,1,0,0,0,0,0 };
+	bool isSkippingATurn=0;
 	Ocean ocean;
 	int getShipLimit(int lenght);
 	void setShipLimit(int lenght, int limit);
