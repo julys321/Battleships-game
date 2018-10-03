@@ -16,7 +16,9 @@ public:
 	void receiveShot(int x, int y);
 	bool areThereRemainingShips();
 	bool areAllShipLimitsExceeded();
+
 	Player();
+	Player(int shipLimits[]);
 	~Player();
 };
 

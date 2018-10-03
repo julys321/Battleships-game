@@ -115,6 +115,11 @@ Player::Player()
 {
 }
 
+Player::Player(int shipLimits[]){
+	for (int i = 1; i < 11; i++)
+		this->shipLimits[i] = shipLimits[i];
+}
+
 
 Player::~Player()
 {
